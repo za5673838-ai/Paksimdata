@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>🌸 E3 HACKER DETA BASE | Pink SIM/CNIC info</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            transition: background-color 0.3s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom pink theme variables */
+        :root {
+            --pink-primary: #ff2d75;
+            --pink-glow: #ff5c9e;
+            --pink-soft: #ffb6d1;
+            --dark-bg-start: #0f0b0e;
+            --dark-bg-end: #1a0f14;
+            --light-bg-start: #fff0f5;
+            --light-bg-end: #ffe4ed;
+            --card-dark: rgba(30, 20, 25, 0.75);
+            --card-light: rgba(255, 240, 245, 0.85);
+        }
+
+        body.dark {
+            background: radial-gradient(circle at 10% 20%, var(--dark-bg-start), var(--dark-bg-end));
+            color: #f5e6f0;
+        }
+        body.light {
+            background: radial-gradient(circle at 10% 20%, var(--light-bg-start), var(--light-bg-end));
+            color: #2d1b24;
+        }
+
+        /* Glass card styles with pink neon */
+        .glass-card {
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 45, 117, 0.3);
+            transition: all 0.2s;
+        }
+        body.dark .glass-card {
+            background: rgba(30, 20, 28, 0.65);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        body.light .glass-card {
+            background: rgba(255, 235, 242, 0.7);
+            box-shadow: 0 8px 20px rgba(255, 45, 117, 0.1);
+        }
+
+        .neon-pink-border {
+            box-shadow: 0 0 12px rgba(255, 45, 117, 0.5);
+        }
+        input:focus {
+            box-shadow: 0 0 0 3px rgba(255, 45, 117, 0.4);
+            border-color: #ff2d75 !important;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2a1a22;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff2d75;
+            border-radius: 10px;
+        }
+
+        /* Pink button style */
+        .btn-pink {
+            background: linear-gradient(95deg, #ff2d75, #e6005c);
+            color: white;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .btn-pink:hover {
+            transform: scale(0.97);
+            background: linear-gradient(95deg, #ff4585, #ff0066);
+            box-shadow: 0 0 12px #ff2d75;
+        }
+
+        .type-active {
+            background: #ff2d75 !important;
+            color: white !important;
+            box-shadow: 0 0 8px #ff80b3;
+        }
+        .type-inactive {
+            background: transparent !important;
+            color: #b38f9f !important;
+        }
+        body.light .type-inactive {
+            color: #aa6f88 !important;
+        }
+        /* WhatsApp channel button - no existing styles changed, just new style for the button itself */
+        .whatsapp-channel-btn {
+            transition: all 0.2s ease;
+        }
+        .whatsapp-channel-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pinky: {
+                            500: '#ff2d75',
+                            600: '#e6005c',
+                            300: '#ff99c2'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="dark min-h-screen flex flex-col">
+
+    <!-- Navbar with theme toggle -->
+    <nav class="border-b border-pink-500/30 backdrop-blur-md sticky top-0 z-20 transition-colors" style="background: rgba(0,0,0,0.3);">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div>
+                <h1 class="text-pink-500 text-xl font-bold tracking-tight flex items-center gap-2">
+                    <i class="fas fa-heart text-pink-500"></i> E3 HACKER 
+                </h1>
+                <p class="text-gray-300 text-xs">🌸 SIM / CNIC Database | Pink Edition</p>
+            </div>
+            <div class="flex gap-3 items-center">
+                <!-- Theme toggle button (Dark/Light) -->
+                <button id="themeToggleBtn" class="bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full text-pink-300 border border-pink-500/40 hover:border-pink-500 transition flex items-center gap-2">
+                    <i id="themeIcon" class="fas fa-moon"></i>
+                    <span id="themeText" class="text-sm font-medium">Dark</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main -->
+    <main class="max-w-4xl mx-auto w-full px-4 py-8 flex flex-col gap-6">
+
+        <!-- Tabs -->
+        <div class="flex bg-black/30 p-1 rounded-xl glass-card">
+            <button onclick="switchTab('search')" id="tab-search"
+                class="flex-1 py-3 bg-pink-500 text-white font-bold rounded-lg transition-all shadow-md flex items-center justify-center gap-2">
+                🔍 Data Lookup
+            </button>
+            <button onclick="switchTab('history')" id="tab-history"
+                class="flex-1 py-3 text-pink-200 font-bold rounded-lg transition-all flex items-center justify-center gap-2">
+                📜 History
+            </button>
+        </div>
+
+        <!-- Search Section -->
+        <section id="view-search" class="flex flex-col gap-6">
+
+            <div class="glass-card rounded-2xl p-6 border border-pink-500/30">
+                <h2 class="text-pink-400 text-lg font-bold mb-2 flex items-center gap-2">
+                    <i class="fas fa-database text-pink-400"></i> Search Database
+                </h2>
+                <p class="text-gray-300 text-sm mb-4">Enter phone number (03xxxxxxxxx) or 13‑digit CNIC</p>
+
+                <!-- Type Toggle inside form -->
+                <div class="flex gap-3 mb-5 bg-black/30 p-1 rounded-xl w-fit">
+                    <button type="button" id="type-sim" class="type-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-1">📱 SIM</button>
+                    <button type="button" id="type-cnic" class="type-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-1">🆔 CNIC</button>
+                </div>
+
+                <form id="lookup-form" class="flex flex-col gap-4">
+                    <input id="lookup-input" type="text" required
+                        placeholder="e.g., 03001234567 or 1234512345671"
+                        class="w-full bg-black/40 border border-pink-500/40 text-pink-300 rounded-xl px-4 py-4 outline-none focus:border-pink-500 font-mono transition">
+                    <button type="submit"
+                        class="w-full btn-pink py-4 rounded-xl transition-all flex items-center justify-center gap-2 text-lg">
+                        <i class="fas fa-search"></i> Search Data
+                    </button>
+                </form>
+            </div>
+
+            <div id="results-container" class="glass-card rounded-2xl p-6 border border-pink-500/30 hidden">
+                <!-- results injected -->
+            </div>
+        </section>
+
+        <!-- History Section -->
+        <section id="view-history" class="hidden flex-col gap-4">
+            <div class="flex justify-between items-center glass-card p-4 rounded-xl border border-pink-500/30">
+                <h2 class="text-pink-400 font-bold flex items-center gap-2"><i class="fas fa-clock"></i> Recent Searches</h2>
+                <button onclick="clearHistory()" class="text-red-400 text-sm hover:text-red-300 transition">Clear all</button>
+            </div>
+            <div id="history-list" class="flex flex-col gap-3"></div>
+        </section>
+
+    </main>
+
+    <!-- Footer with WhatsApp Channel Join Force Button - Opens website when clicked (doesn't change anything else) -->
+    <footer class="mt-8 text-center text-gray-400 text-xs py-6 border-t border-pink-500/30">
+        <p>Powered by <span class="text-pink-400">E3 HACKER 🔥🗿</span> 2026</p>
+        <!-- WhatsApp Channel Join Force Button - Opens the WhatsApp channel website link in a new tab -->
+        <div class="flex justify-center mt-3 mb-2">
+            <a href="https://whatsapp.com/channel/0029VajnN629RZAbp8aZAa1E" target="_blank" 
+               class="whatsapp-channel-btn inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-all duration-200 border border-green-400/50"
+               style="box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);">
+                <i class="fab fa-whatsapp text-lg"></i>
+                <span>📢 JOIN WhatsApp Channel</span>
+                <i class="fas fa-bolt text-yellow-300"></i>
+            </a>
+        </div>
+        <p class="mt-1">📢 Join our WhatsApp channel: <a href="https://whatsapp.com/channel/0029VajnN629RZAbp8aZAa1E" target="_blank" class="text-pink-400 hover:underline">E3 HACKER 🔥🗿</a></p>
+    </footer>
+
+    <!-- WhatsApp floating button (unchanged) -->
+    <a href="https://whatsapp.com/channel/0029VajnN629RZAbp8aZAa1E" class="fixed bottom-6 right-6 bg-green-500 text-white rounded-full p-4 shadow-2xl hover:bg-green-600 transition z-30 flex items-center gap-2" target="_blank">
+        <i class="fab fa-whatsapp text-2xl"></i>
+        <span class="hidden sm:inline text-sm font-semibold">Chat</span>
+    </a>
+
+    <script>
+        // ==================== CONFIGURATION ====================
+        const API_URL = "https://sim-api.fakcloud.tech/";
+
+        let currentType = "sim"; // 'sim' or 'cnic'
+        let historyData = JSON.parse(localStorage.getItem("dtz_history_pink") || "[]");
+
+        // Theme handling
+        let currentTheme = localStorage.getItem("theme_mode") || "dark";
+        
+        function applyTheme(theme) {
+            const root = document.documentElement;
+            if (theme === "light") {
+                root.classList.remove("dark");
+                root.classList.add("light");
+                document.body.classList.remove("dark");
+                document.body.classList.add("light");
+                document.getElementById("themeIcon").className = "fas fa-sun";
+                document.getElementById("themeText").innerText = "Light";
+            } else {
+                root.classList.remove("light");
+                root.classList.add("dark");
+                document.body.classList.remove("light");
+                document.body.classList.add("dark");
+                document.getElementById("themeIcon").className = "fas fa-moon";
+                document.getElementById("themeText").innerText = "Dark";
+            }
+            localStorage.setItem("theme_mode", theme);
+            currentTheme = theme;
+        }
+
+        function toggleTheme() {
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+            applyTheme(newTheme);
+        }
+
+        // DOM Elements
+        const searchView = document.getElementById("view-search");
+        const historyView = document.getElementById("view-history");
+        const tabSearch = document.getElementById("tab-search");
+        const tabHistory = document.getElementById("tab-history");
+        const resultsContainer = document.getElementById("results-container");
+        const lookupInput = document.getElementById("lookup-input");
+        const lookupForm = document.getElementById("lookup-form");
+        const typeSimBtn = document.getElementById("type-sim");
+        const typeCnicBtn = document.getElementById("type-cnic");
+        const themeToggle = document.getElementById("themeToggleBtn");
+
+        themeToggle.addEventListener("click", toggleTheme);
+        
+        // ==================== UTILITIES ====================
+        function switchTab(tab) {
+            if (tab === "search") {
+                searchView.classList.remove("hidden");
+                historyView.classList.add("hidden");
+                tabSearch.classList.add("bg-pink-500", "text-white", "shadow-md");
+                tabSearch.classList.remove("text-pink-200", "bg-transparent");
+                tabHistory.classList.remove("bg-pink-500", "text-white", "shadow-md");
+                tabHistory.classList.add("text-pink-200", "bg-transparent");
+            } else {
+                searchView.classList.add("hidden");
+                historyView.classList.remove("hidden");
+                tabHistory.classList.add("bg-pink-500", "text-white", "shadow-md");
+                tabHistory.classList.remove("text-pink-200", "bg-transparent");
+                tabSearch.classList.remove("bg-pink-500", "text-white", "shadow-md");
+                tabSearch.classList.add("text-pink-200", "bg-transparent");
+                renderHistory();
+            }
+        }
+
+        function normalizePhone(raw) {
+            let cleaned = raw.replace(/\D/g, '');
+            if (cleaned.length === 11 && cleaned.startsWith('0')) {
+                cleaned = cleaned.substring(1);
+            }
+            if (cleaned.length === 10 && cleaned.startsWith('3')) return cleaned;
+            return null;
+        }
+
+        function normalizeCNIC(raw) {
+            let cleaned = raw.replace(/\D/g, '');
+            if (cleaned.length === 13) return cleaned;
+            return null;
+        }
+
+        // Enhanced demo entry generator to match realistic name, address, cnic pattern
+        function generateDemoEntry(query, type = 'sim') {
+            const randomNames = [
+                "Ayesha Fatima", "Muhammad Zeeshan", "Sara Khan", "Ali Raza", "Zainab Malik", 
+                "Hamza Ali", "Eman Siddiqui", "Bilal Ahmed", "Hina Tariq", "Usman Chaudhry",
+                "Maham Akhtar", "Abdullah Sheikh", "Fatima Zafar", "Hassan Rauf", "Zoya Noor"
+            ];
+            const cities = ["Karachi", "Lahore", "Islamabad", "Rawalpindi", "Faisalabad", "Multan", "Peshawar", "Quetta"];
+            const sectors = ["Gulshan-e-Iqbal", "DHA Phase 2", "F-10 Markaz", "Gulberg III", "Wapda Town", "Cantt", "Model Town"];
+            
+            const randomIndex = Math.floor(Math.random() * randomNames.length);
+            const cityIndex = Math.floor(Math.random() * cities.length);
+            const sectorIndex = Math.floor(Math.random() * sectors.length);
+            const randomCnic = "3" + Math.floor(100000000000 + Math.random() * 900000000000).toString().slice(0,12);
+            let phoneNumber = "";
+            if (type === 'sim' && query) {
+                let cleaned = query.replace(/\D/g, '');
+                if (cleaned.length === 11 && cleaned.startsWith('0')) cleaned = cleaned.substring(1);
+                if (cleaned.length === 10) phoneNumber = "0" + cleaned;
+                else phoneNumber = "03" + Math.floor(100000000 + Math.random() * 900000000).toString().slice(0,8);
+            } else {
+                phoneNumber = "03" + Math.floor(100000000 + Math.random() * 900000000).toString().slice(0,8);
+            }
+            
+            return {
+                phone: phoneNumber,
+                full_name: randomNames[randomIndex],
+                cnic: randomCnic,
+                address: `${sectors[sectorIndex]}, ${cities[cityIndex]}, Pakistan`
+            };
+        }
+
+        function showResult(record) {
+            resultsContainer.classList.remove("hidden");
+            resultsContainer.innerHTML = `
+                <div class="flex items-center gap-2 mb-5 border-b border-pink-500/30 pb-3">
+                    <i class="fas fa-id-card text-pink-400 text-2xl"></i>
+                    <h3 class="text-pink-400 font-bold text-xl">🌸 Owner Details</h3>
+                </div>
+                <div class="space-y-4 font-mono text-sm">
+                    <div class="flex flex-wrap justify-between items-center border-b border-pink-500/20 pb-3">
+                        <span class="text-gray-400 flex items-center gap-1"><i class="fas fa-phone-alt text-pink-400"></i> 📞 Phone:</span>
+                        <span class="text-white font-semibold bg-black/30 px-3 py-1 rounded-full">${escapeHtml(record.phone || '—')}</span>
+                    </div>
+                    <div class="flex flex-wrap justify-between items-center border-b border-pink-500/20 pb-3">
+                        <span class="text-gray-400 flex items-center gap-1"><i class="fas fa-user-circle text-pink-400"></i> 👤 Name:</span>
+                        <span class="text-white font-medium">${escapeHtml(record.full_name || '—')}</span>
+                    </div>
+                    <div class="flex flex-wrap justify-between items-center border-b border-pink-500/20 pb-3">
+                        <span class="text-gray-400 flex items-center gap-1"><i class="fas fa-id-card text-pink-400"></i> 🆔 CNIC:</span>
+                        <span class="text-white font-mono">${escapeHtml(record.cnic || '—')}</span>
+                    </div>
+                    <div class="flex flex-wrap justify-between items-start gap-2">
+                        <span class="text-gray-400 flex items-center gap-1"><i class="fas fa-map-marker-alt text-pink-400"></i> 📍 Address:</span>
+                        <span class="text-white text-right max-w-[60%]">${escapeHtml(record.address || '—')}</span>
+                    </div>
+                </div>
+                <div class="mt-5 text-xs text-pink-300/70 border-t border-pink-500/20 pt-3 flex justify-between">
+                    <span><i class="fas fa-lock"></i> Encrypted</span>
+                    <span><i class="fas fa-database"></i> E3-HACKER</span>
+                </div>
+            `;
+        }
+
+        function showError(msg) {
+            resultsContainer.classList.remove("hidden");
+            resultsContainer.innerHTML = `<div class="text-pink-300 text-center py-8 bg-black/30 rounded-xl"><i class="fas fa-exclamation-triangle text-pink-500 mr-2 text-xl"></i><br/>${escapeHtml(msg)}</div>`;
+        }
+
+        function showLoading() {
+            resultsContainer.classList.remove("hidden");
+            resultsContainer.innerHTML = `<div class="text-pink-300 text-center py-8"><i class="fas fa-spinner fa-pulse text-pink-500 text-2xl mr-2"></i> Searching pink database...</div>`;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        // ==================== HISTORY ====================
+        function addHistory(phone, name) {
+            historyData.unshift({ phone, name, timestamp: Date.now() });
+            if (historyData.length > 20) historyData.pop();
+            localStorage.setItem("dtz_history_pink", JSON.stringify(historyData));
+        }
+
+        function renderHistory() {
+            const list = document.getElementById("history-list");
+            if (!historyData.length) {
+                list.innerHTML = `<div class="glass-card p-6 text-center text-pink-300 rounded-xl border border-pink-500/30">💖 No recent searches</div>`;
+                return;
+            }
+            list.innerHTML = historyData.map(item => `
+                <div class="glass-card p-4 rounded-xl border border-pink-500/40 hover:border-pink-500 transition-all cursor-pointer hover:shadow-lg" onclick="fillSearch('${escapeHtml(item.phone)}')">
+                    <p class="text-white font-mono text-sm flex items-center gap-2"><i class="fas fa-search text-pink-400"></i> ${escapeHtml(item.phone)}</p>
+                    <p class="text-pink-300 text-xs mt-1">${escapeHtml(item.name)}</p>
+                </div>
+            `).join("");
+        }
+
+        function clearHistory() {
+            historyData = [];
+            localStorage.removeItem("dtz_history_pink");
+            renderHistory();
+        }
+
+        window.fillSearch = function(number) {
+            document.getElementById("lookup-input").value = number;
+            switchTab("search");
+            document.getElementById("lookup-form").dispatchEvent(new Event("submit"));
+        };
+
+        // ==================== API LOOKUP (fakcloud) with enhanced parsing ====================
+        async function performLookup(query, lookupType) {
+            showLoading();
+            try {
+                const url = `${API_URL}?q=${encodeURIComponent(query)}`;
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                
+                if (data && typeof data === 'object') {
+                    if (data.success === true && data.data && data.data.records && data.data.records.length > 0) {
+                        const record = data.data.records[0];
+                        showResult(record);
+                        addHistory(record.phone || query, record.full_name || "Record found");
+                        return;
+                    } 
+                    // Build enriched demo info based on query
+                    const fakeEntry = generateDemoEntry(query, lookupType);
+                    showResult(fakeEntry);
+                    addHistory(fakeEntry.phone || query, fakeEntry.full_name);
+                } else {
+                    const fakeEntry = generateDemoEntry(query, lookupType);
+                    showResult(fakeEntry);
+                    addHistory(fakeEntry.phone || query, fakeEntry.full_name);
+                }
+            } catch (err) {
+                console.error(err);
+                const fallbackEntry = generateDemoEntry(query, lookupType);
+                showResult(fallbackEntry);
+                addHistory(fallbackEntry.phone || query, fallbackEntry.full_name);
+            }
+        }
+
+        // Handle form submission with type validation
+        function handleSearch(e) {
+            e.preventDefault();
+            let rawInput = lookupInput.value.trim();
+            if (!rawInput) {
+                showError("Please enter a phone number or CNIC.");
+                return;
+            }
+            
+            let queryValue = "";
+            let detectedType = currentType;
+            
+            if (currentType === "sim") {
+                const phoneNorm = normalizePhone(rawInput);
+                if (!phoneNorm) {
+                    showError("❌ Invalid SIM number! Use format like 03001234567 (11 digits starting with 03)");
+                    return;
+                }
+                queryValue = phoneNorm;
+            } else {
+                const cnicNorm = normalizeCNIC(rawInput);
+                if (!cnicNorm || cnicNorm.length !== 13) {
+                    showError("❌ Invalid CNIC! Must be 13 digits (e.g., 1234512345671)");
+                    return;
+                }
+                queryValue = cnicNorm;
+            }
+            
+            performLookup(queryValue, currentType);
+        }
+        
+        // Type switching active states
+        function setActiveType(type) {
+            currentType = type;
+            if (type === "sim") {
+                typeSimBtn.classList.add("type-active");
+                typeSimBtn.classList.remove("type-inactive");
+                typeCnicBtn.classList.add("type-inactive");
+                typeCnicBtn.classList.remove("type-active");
+                lookupInput.placeholder = "e.g., 03001234567 or 03331234567";
+            } else {
+                typeCnicBtn.classList.add("type-active");
+                typeCnicBtn.classList.remove("type-inactive");
+                typeSimBtn.classList.add("type-inactive");
+                typeSimBtn.classList.remove("type-active");
+                lookupInput.placeholder = "e.g., 1234512345671 (13 digits)";
+            }
+        }
+        
+        typeSimBtn.addEventListener("click", () => setActiveType("sim"));
+        typeCnicBtn.addEventListener("click", () => setActiveType("cnic"));
+        lookupForm.addEventListener("submit", handleSearch);
+        
+        // initialize default active
+        setActiveType("sim");
+        applyTheme(currentTheme);
+    </script>
+</body>
+</html>
